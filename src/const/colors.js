@@ -1,17 +1,18 @@
 export const mainAccent = "rgb(250,130,20)";
-export const mainDarkAccent = "rgb(14,134,212)";
+export const mainDarkAccent = "rgb(4,127,231)";
+
 export const mainAccentHover = "rgba(250,130,20, 0.8)";
-export const mainAccentHoverLight = "rgba(250,130,20, 0.2)";
-export const mainAccentHoverDark = "rgba(14,134,212,0.8)";
+export const mainAccentHoverDark = "rgba(4,127,231,0.8)";
+
 export const borders = "rgb(230, 230, 230)";
 export const bordersDark = "rgb(100, 100, 100)";
+
 export const mainFont = "rgb(90, 90, 90)";
 export const mainFontDark = "rgb(230, 230, 230)";
 
 export const props = {
   fontColor: mainAccent,
   buttonColor: "white",
-  buttonHover: mainAccentHoverLight,
 };
 
 export const mainColor = "white";
@@ -26,7 +27,7 @@ export const getMainAccent = (darkMode) => {
 };
 
 export const getHoverColor = (darkMode) => {
-  return darkMode ? mainAccentHoverDark : mainAccentHoverLight;
+  return darkMode ? mainAccentHoverDark : mainAccentHover;
 };
 
 export const getBorderColor = (darkMode) => {

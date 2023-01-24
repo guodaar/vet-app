@@ -9,7 +9,7 @@ import {
 import { ThemeContext } from "../context/ThemeContext";
 
 const StyledButton = styled.button`
-  /* background-color: ${(props) => props.buttonColor || mainAccent}; */
+  cursor: pointer;
   background-color: ${(props) => getMainAccent(props.darkMode)};
   color: ${(props) => props.fontColor || "white"};
   font-size: 0.8rem;
@@ -20,9 +20,9 @@ const StyledButton = styled.button`
   margin: 10px 5px;
   border: 2px solid ${(props) => getMainAccent(props.darkMode)};
   border-radius: 5px;
-  transition: 0.2s;
+  transition: 0.2s ease-in-out;
   &:hover {
-    background-color: ${(props) => getHoverColor(props.darkMode)};
+    transform: scale(1.05);
   }
 `;
 

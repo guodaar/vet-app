@@ -27,7 +27,6 @@ const Pets = () => {
           <CustomButton>Add a pet</CustomButton>
         </TitleWrap>
         {petList && <PetsList petList={petList} />}
-        <CustomButton fontColor={props.fontColor}>Add a pet</CustomButton>
       </MainContainer>
     </div>
   );
