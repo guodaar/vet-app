@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
-import { mainAccent, mainAccentHover } from "../const/colors";
+import {
+  getHoverColor,
+  getMainAccent,
+  mainAccent,
+  mainAccentHover,
+} from "../const/colors";
+import { ThemeContext } from "../context/ThemeContext";
 
 const StyledButton = styled.button`
-  background-color: ${(props) => props.buttonColor || mainAccent};
+  /* background-color: ${(props) => props.buttonColor || mainAccent}; */
+  background-color: ${(props) => getMainAccent(props.darkMode)};
   color: ${(props) => props.fontColor || "white"};
   font-size: 0.8rem;
   letter-spacing: 1.5px;
@@ -11,16 +18,21 @@ const StyledButton = styled.button`
   text-transform: uppercase;
   padding: 7px 23px;
   margin: 10px 5px;
-  border: 2px solid ${mainAccent};
+  border: 2px solid ${(props) => getMainAccent(props.darkMode)};
   border-radius: 5px;
   transition: 0.2s;
   &:hover {
-    background-color: ${(props) => props.buttonHover || mainAccentHover};
+    background-color: ${(props) => getHoverColor(props.darkMode)};
   }
 `;
 
 const CustomButton = ({ children, onClick }) => {
-  return <StyledButton onClick={onClick}>{children}</StyledButton>;
+  const { darkMode } = useContext(ThemeContext);
+  return (
+    <StyledButton darkMode={darkMode} onClick={onClick}>
+      {children}
+    </StyledButton>
+  );
 };
 
 export default CustomButton;

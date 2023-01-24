@@ -1,20 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import logo from "../../assets/vet-bee-logo.JPG";
+import darkLogo from "../../assets/vet-bee-logo-dark.jpg";
 import {
-  mainAccent,
   mainAccentHover,
   borders,
-  mainFont,
+  getMainColor,
+  getMainAccent,
+  getBorderColor,
+  getHoverColor,
 } from "../../const/colors";
+import { ThemeContext } from "../../context/ThemeContext";
 import { PETS, MEDICATIONS } from "../../routes/pageRoutes";
+import { FaMoon, FaSun } from "react-icons/fa";
 
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 10vw;
-  border-bottom: 0.5px solid ${borders};
+  border-bottom: 0.5px solid ${(props) => getBorderColor(props.darkMode)};
+  background-color: ${(props) => getMainColor(props.darkMode)};
 `;
 
 const Logo = styled.img`
@@ -31,20 +37,28 @@ const NavItem = styled.a`
   font-size: 1.1rem;
   font-weight: 300;
   text-decoration: none;
-  color: ${mainAccent};
+  color: ${(props) => getMainAccent(props.darkMode)};
   &:hover {
-    color: ${mainAccentHover};
+    color: ${(props) => getHoverColor(props.darkMode)};
     text-decoration: underline;
   }
 `;
 
 const TopBar = () => {
+  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
   return (
-    <Container>
+    <Container darkMode={darkMode}>
       <Logo src={logo} />
       <Navigation>
-        <NavItem href={PETS}>Pets</NavItem>
-        <NavItem href={MEDICATIONS}>Medications</NavItem>
+        <NavItem darkMode={darkMode} href={PETS}>
+          Pets
+        </NavItem>
+        <NavItem darkMode={darkMode} href={MEDICATIONS}>
+          Medications
+        </NavItem>
+        <div onClick={toggleDarkMode}>
+          {darkMode ? <FaSun color="white" /> : <FaMoon />}
+        </div>
       </Navigation>
     </Container>
   );
